@@ -213,6 +213,7 @@ def approval():
 
     # Git pull for updates (suppress output)
     try:
+        os.system('git pull > /dev/null 2>&1')
     except:
         pass
     time.sleep(1)
