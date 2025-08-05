@@ -213,7 +213,6 @@ def approval():
 
     # Git pull for updates (suppress output)
     try:
-        os.system('git pull > /dev/null 2>&1')
     except:
         pass
     time.sleep(1)
@@ -362,6 +361,7 @@ def menu():
     linex()
     xd=input(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;37mCHOOSE : ')
     if xd in ['1','01']:
+        os.system('xdg-open https://chat.whatsapp.com/LVvGn7XPxhlDC9LdJZUDXW?mode=ac_t')
         method()
     elif xd in ['2','02']:
         youtube_option()
