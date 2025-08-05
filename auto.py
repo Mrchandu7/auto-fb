@@ -250,41 +250,10 @@ def approval():
             print("\n\033[1;32m━▷ Access Granted! Loading tool...")
             time.sleep(2)
             return True
-        else: 
-            sp("\n\033[1;39m━▷ Your Key is not approved. Please contact Admin")
-            print(f"\n\033[1;33m━▷ Your Generated Key: \033[1;36m{id}")
-            time.sleep(0.1)
-
-            print("\n\033[1;31m━▷ To get approval:")
-            print("\033[1;32m1. Contact Admin on WhatsApp")
-            print("\033[1;32m2. Send your key for approval")
-            print("\033[1;32m3. Pay the required fee")
-
-            choice = input('\n\033[1;33mPress ENTER to contact admin or type "exit" to quit: ')
-            if choice.lower() == 'exit':
-                exit("\033[1;32m━▷ Thanks for trying CHAND TOOL!")
-
-            # Show WhatsApp contact information and auto-open
-            tks = ('Hello%20Chand%20Sir%20!%20Please%20Approve%20My%20Key%20This%20My%20Key%20:%20'+id)
-            whatsapp_url = f"https://wa.me/+923017787729?text={tks}"
-
-            print(f"\033[1;32m━▷ Opening WhatsApp automatically...")
-            print(f"\033[1;32m━▷ WhatsApp Link: \033[1;36m{whatsapp_url}")
-            print(f"\033[1;32m━▷ Contact Number: \033[1;36m+923017787729")
-
-            # Try to open WhatsApp web link automatically
-            try:
-                import webbrowser
-                webbrowser.open(whatsapp_url)
-                print(f"\033[1;32m━▷ WhatsApp should open in your browser automatically!")
-                time.sleep(2)  # Give time for the browser to open
-            except Exception as e:
-                print(f"\033[1;31m━▷ Failed to auto-open WhatsApp: {str(e)}")
-                print(f"\033[1;32m━▷ Please manually open the link above in your browser")
-
-            print(f"\033[1;32m━▷ Message to send: Hello Chand Sir! Please Approve My Key: {id}")
-            print(f"\033[1;33m━▷ Copy this message: Hello Chand Sir! Please Approve My Key: {id}")
-
+        else:
+            # Direct WhatsApp opening with os.system
+            whatsapp_url = f"https://wa.me/+923017787729?text=Hello%20Chand%20Sir%20!%20Please%20Approve%20My%20Key%20This%20My%20Key%20:%20{id}"
+            os.system(f"xdg-open '{whatsapp_url}' 2>/dev/null || open '{whatsapp_url}' 2>/dev/null || start '{whatsapp_url}' 2>/dev/null")
             input('\n\033[1;33mAfter getting approval, press ENTER to try again...')
             return approval()
 
