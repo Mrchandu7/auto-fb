@@ -277,10 +277,13 @@ def approval():
                 import webbrowser
                 webbrowser.open(whatsapp_url)
                 print(f"\033[1;32m━▷ WhatsApp should open in your browser automatically!")
-            except:
+                time.sleep(2)  # Give time for the browser to open
+            except Exception as e:
+                print(f"\033[1;31m━▷ Failed to auto-open WhatsApp: {str(e)}")
                 print(f"\033[1;32m━▷ Please manually open the link above in your browser")
 
             print(f"\033[1;32m━▷ Message to send: Hello Chand Sir! Please Approve My Key: {id}")
+            print(f"\033[1;33m━▷ Copy this message: Hello Chand Sir! Please Approve My Key: {id}")
 
             input('\n\033[1;33mAfter getting approval, press ENTER to try again...')
             return approval()
