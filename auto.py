@@ -201,23 +201,10 @@ def sp(text):
 
 #------------------[ APPROVAL SYSTEM ]-------------------#
 def approval():
-    # Detect if running on mobile/Android
-    is_mobile = False
-    try:
-        android_check = subprocess.check_output('getprop ro.build.version.release', shell=True).decode('utf-8').strip()
-        if android_check:
-            is_mobile = True
-            print("\033[1;32m━▷ Mobile Android device detected!")
-    except:
-        pass
-
     # First show logo2 as welcome
     os.system('clear')
     print(logo2)
-    if is_mobile:
-        sp("\033[1;37m━▷ Welcome to CHAND TOOL! (Mobile Optimized)")
-    else:
-        sp("\033[1;37m━▷ Welcome to CHAND TOOL!")
+    sp("\033[1;37m━▷ Welcome to CHAND TOOL!")
     time.sleep(2)
 
     # Then show main logo1
@@ -285,38 +272,15 @@ def approval():
             print(f"\033[1;32m━▷ WhatsApp Link: \033[1;36m{whatsapp_url}")
             print(f"\033[1;32m━▷ Contact Number: \033[1;36m+923017787729")
 
-            # Try to open WhatsApp automatically for mobile
+            # Try to open WhatsApp web link automatically
             try:
                 import webbrowser
-                import subprocess
-                import os
-                
-                # Try multiple methods to open WhatsApp on mobile
-                print(f"\033[1;32m━▷ Attempting to open WhatsApp...")
-                
-                # Method 1: Try Android intent
-                try:
-                    intent_url = f"intent://send?text={tks}#Intent;scheme=whatsapp;package=com.whatsapp;end"
-                    subprocess.run(['am', 'start', '-a', 'android.intent.action.VIEW', '-d', intent_url], 
-                                 capture_output=True, timeout=3)
-                    print(f"\033[1;32m━▷ WhatsApp opened via Android intent!")
-                except:
-                    # Method 2: Try direct WhatsApp URL
-                    try:
-                        whatsapp_direct = f"whatsapp://send?phone=+923017787729&text={tks}"
-                        subprocess.run(['xdg-open', whatsapp_direct], capture_output=True, timeout=3)
-                        print(f"\033[1;32m━▷ WhatsApp opened via direct URL!")
-                    except:
-                        # Method 3: Fallback to web browser
-                        webbrowser.open(whatsapp_url)
-                        print(f"\033[1;32m━▷ WhatsApp opened in browser!")
-                        
-            except Exception as e:
-                print(f"\033[1;31m━▷ Could not auto-open WhatsApp: {e}")
+                webbrowser.open(whatsapp_url)
+                print(f"\033[1;32m━▷ WhatsApp should open in your browser automatically!")
+            except:
                 print(f"\033[1;32m━▷ Please manually open the link above in your browser")
 
             print(f"\033[1;32m━▷ Message to send: Hello Chand Sir! Please Approve My Key: {id}")
-            print(f"\033[1;36m━▷ WhatsApp should open automatically on mobile devices!")
 
             input('\n\033[1;33mAfter getting approval, press ENTER to try again...')
             return approval()
@@ -470,29 +434,9 @@ def whatsapp_group():
 
     try:
         import webbrowser
-        import subprocess
-        
-        # Try multiple methods to open WhatsApp group on mobile
-        print(' \033[1;32m[\033[1;31m–\033[1;32m] Attempting to open WhatsApp group...')
-        
-        try:
-            # Method 1: Try Android intent for WhatsApp group
-            intent_url = f"intent://send?text=Join%20Group#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url={whatsapp_group_url};end"
-            subprocess.run(['am', 'start', '-a', 'android.intent.action.VIEW', '-d', whatsapp_group_url], 
-                         capture_output=True, timeout=3)
-            print(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;32mWHATSAPP GROUP OPENED VIA ANDROID!')
-        except:
-            try:
-                # Method 2: Try direct WhatsApp group URL
-                subprocess.run(['xdg-open', whatsapp_group_url], capture_output=True, timeout=3)
-                print(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;32mWHATSAPP GROUP OPENED DIRECTLY!')
-            except:
-                # Method 3: Fallback to web browser
-                webbrowser.open(whatsapp_group_url)
-                print(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;32mWHATSAPP GROUP OPENED IN BROWSER!')
-                
-    except Exception as e:
-        print(f' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mError opening WhatsApp: {e}')
+        webbrowser.open(whatsapp_group_url)
+        print(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;32mWHATSAPP GROUP OPENED IN BROWSER!')
+    except:
         print(' \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mPLEASE MANUALLY OPEN THE LINK ABOVE')
 
     input('\n\033[1;33mPress ENTER to return to main menu...')
